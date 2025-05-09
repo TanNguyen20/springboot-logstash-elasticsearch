@@ -60,7 +60,8 @@ services:
     volumes:
       - ./logs:/logs
     depends_on:
-      - logstash
+      logstash:
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
       interval: 30s
